@@ -115,7 +115,7 @@ switch ($funcion) {
 
         if ($resultadoUpdate) {
             // Mensaje de actualización fue exitosa.
-            $resultado1 = array("success" => true, "goodmessage" => "Actualización exitosa.");
+            $resultado1 = array("success" => true, "goodmessageUpdateUser" => "Actualización exitosa.");
             echo json_encode($resultado1);
         } else {
             // Mensaje de error en la conexión.
