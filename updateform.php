@@ -106,23 +106,38 @@ switch ($funcion) {
             echo json_encode("Error: UNO O MAS VALORES SON UNDEFINED");
             break;
         }
+        
 
+        $querySelect = "SELECT id, localidad FROM usuarios WHERE id = '$idUser' AND localidad = '$idLocUsuario' ";
+        $resultadoSelect = pg_query($conex, $querySelect);
 
-        $query = "UPDATE usuarios SET localidad = '$idLocUsuario' WHERE id = $idUser";
-        $resultadoUpdate = pg_query($conex, $query);
+        if(pg_num_rows($resultadoSelect) > 0){
 
-        //==================== MENSAJES ==================//
-
-        if ($resultadoUpdate) {
-            // Mensaje de actualización fue exitosa.
-            $resultado1 = array("success" => true, "goodmessageUpdateUser" => "Actualización exitosa.");
+            $resultado1 = array ("success" => false, "message" => "El usuario ya esta registrado en la localidad");
             echo json_encode($resultado1);
-        } else {
-            // Mensaje de error en la conexión.
-            $resultado1 = array("success" => false, "message" => "Hubo algún error en la actualización.");
-            echo json_encode($resultado1);
-            return;
+
+        }else {
+            $query = "UPDATE usuarios SET localidad = '$idLocUsuario' WHERE id = $idUser";
+            $resultadoUpdate = pg_query($conex, $query);
+    
+            //*==================== MENSAJES ==================*//
+    
+            if ($resultadoUpdate) {
+                // Mensaje de actualización fue exitosa.
+                $resultado1 = array("success" => true, "goodmessageUpdateUser" => "Actualización exitosa.");
+                echo json_encode($resultado1);
+            } else {
+                // Mensaje de error en la conexión.
+                $resultado1 = array("success" => false, "message" => "Hubo algún error en la actualización.");
+                echo json_encode($resultado1);
+                return;
+            }
+
         }
+
+
+
+
 
         break;
         //=================== FIN ACTUALIZACION DE LOCALIDAD =================// 

@@ -73,6 +73,49 @@ window.addEventListener("load", function () {
             });
 
 
+            //================== MENSAJES ========================//
+
+            const alerta = document.getElementById("alerta");
+            if (data.success) {
+
+                // Mensaje estatico SUCCESS por registro exitoso del usuario en la DB
+                alerta.textContent = data.goodmessageUpdateUser;
+                alerta.classList.remove("alert-danger");
+                alerta.classList.add("alert-success");
+
+                // Mensaje pop-up SUCCESS por registro exitoso del usuario en la DB
+                Swal.fire({
+
+                    icon: 'success',
+                    title: data.goodmessageUpdateUser,
+                    text: 'que disfrutes de la estadia.',
+                })
+            } else {
+
+                // Mensaje de ERROR estatico por usuario ya registrado en la DB
+                alerta.textContent = data.message;
+                alerta.classList.remove("alert-success");
+                alerta.classList.add("alert-info");
+
+                Swal.fire({
+
+                    // Mensaje pop-up ERROR por usuario ya registrado en la DB
+
+                    icon: 'info',
+                    title: data.message,
+                    text: 'Hola  ' + data.nombres + "  porfavor selecciona una localidad",
+                })
+
+            }
+
+            // Mostrar la alerta
+            alerta.classList.remove("d-none");
+
+            // Ocultar la alerta después de 7 segundos
+            setTimeout(() => {
+                alerta.classList.add("d-none");
+            }, 7000);
+
         } catch (error) {
             console.log("HAY UN ERROR  " + error);
         }
@@ -117,10 +160,6 @@ window.addEventListener("load", function () {
 
                 //=================== MENSAJES ================//
 
-
-                //*===== MENSAJE DE [EXITO] FUNCIONANDO CORRECTAMENTE =====*//
-
-
                 const alerta = document.getElementById("alerta");
                 if (data.success) {
 
@@ -136,10 +175,6 @@ window.addEventListener("load", function () {
                         title: data.goodmessageUpdateUser,
                         text: 'que disfrutes de la estadia   ' + nombreUser,
                     })
-
-                     //*=====================================================*//
-
-                     
                 } else {
 
                     // Mensaje de ERROR estatico por usuario ya registrado en la DB
@@ -153,7 +188,7 @@ window.addEventListener("load", function () {
 
                         icon: 'error',
                         title: data.message,
-                        text: nombreUser + "  Oops! Hubo algun error.",
+                        text: nombreUser + "  revisa los datos ingresados.",
                     })
 
                 }
