@@ -68,8 +68,12 @@ switch ($funcion) {
             // Obtener los datos de cada fila de resultadox
             while ($fila = pg_fetch_assoc($resultadox)) {
 
+
+
                 // Agregar TODOS los datos de la fila al array $idUsuario
                 $idUsuario[] = $fila;
+
+
             }
         } else {
             // Mostrar un mensaje de error si la consulta no se ejecutó correctamente
@@ -108,10 +112,10 @@ switch ($funcion) {
         }
         
 
-        $querySelect = "SELECT id, localidad FROM usuarios WHERE id = '$idUser' AND localidad = '$idLocUsuario' ";
+        $querySelect = "SELECT id, localidad FROM usuarios WHERE id = '$idUser' AND localidad = '$idLocUsuario'";
         $resultadoSelect = pg_query($conex, $querySelect);
 
-        if(pg_num_rows($resultadoSelect) > 0){
+        if(pg_num_rows($resultadoSelect)){
 
             $resultado1 = array ("success" => false, "message" => "El usuario ya esta registrado en la localidad");
             echo json_encode($resultado1);
@@ -134,8 +138,6 @@ switch ($funcion) {
             }
 
         }
-
-
 
 
 

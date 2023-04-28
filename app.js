@@ -103,7 +103,7 @@ window.addEventListener("load", function () {
 
                     icon: 'info',
                     title: data.message,
-                    text: 'Hola  ' + data.nombres + "  porfavor selecciona una localidad",
+                    text: "Hola,  " + data.nombres + ".  Porfavor selecciona una localidad!",
                 })
 
             }
