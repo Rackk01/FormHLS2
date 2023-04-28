@@ -37,12 +37,12 @@ switch ($funcion) {
 
             $localidades = pg_fetch_all($resultado);
             foreach ($localidades as $localidad) {
-                $opciones[] = array("id" => $localidad["id"], "nombre" => $localidad["nombre"]);
+                $opciones[] = array("id" => $localidad["id"], "localidad" => $localidad["localidad"]);
             }
             echo json_encode($opciones);
         } else {
 
-            $opciones = array(array("id" => "", "nombre" => "No se encontraron opciones disponibles"));
+            $opciones = array(array("id" => "", "localidad" => "No se encontraron opciones disponibles"));
         }
 
         break;
@@ -138,13 +138,8 @@ switch ($funcion) {
             }
 
         }
-
-
-
         break;
         //=================== FIN ACTUALIZACION DE LOCALIDAD =================// 
-
-
 
 
     default:

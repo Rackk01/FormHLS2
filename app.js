@@ -89,6 +89,7 @@ window.addEventListener("load", function () {
                     icon: 'success',
                     title: data.goodmessageUpdateUser,
                     text: 'que disfrutes de la estadia.',
+                    confirmButton: 'Entendido',
                 })
             } else {
 
@@ -227,11 +228,11 @@ window.addEventListener("load", function () {
 
             const localidad = document.getElementById("idLocalidad");
             for (let locali of data) {
-                console.log(locali.id, locali.nombre);
+                console.log(locali.id, locali.localidad);
 
                 const option = document.createElement("option");
                 option.value = locali.id;
-                option.text = locali.nombre;
+                option.text = locali.localidad;
                 localidad.add(option);
             }
 
@@ -240,13 +241,7 @@ window.addEventListener("load", function () {
         }
     }
 
-    /* 
-    MENSAJES DE ALERTA.
-
-    colocar mensajes de alerta al finalizar correctamente la app
-
-    */
-
+    
 
     function MostrarMensaje(icono, titulo, texto) {
         const alerta = document.getElementById("alertaInfo");
